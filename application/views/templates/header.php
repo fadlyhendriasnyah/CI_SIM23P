@@ -185,41 +185,61 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="dashboard.php" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../../CI_SIM23P/berita" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Berita</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../CI_SIM23P/kategori" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>kategori</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../CI_SIM23P/matakuliah" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Matakuliah</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+    <!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+    <!-- Dashboard (semua role boleh lihat, opsional) -->
+    <li class="nav-item">
+      <a href="<?= base_url('dashboard'); ?>" class="nav-link">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>Dashboard</p>
+      </a>
+    </li>
+
+    <?php if ($this->session->userdata('role') === 'user') : ?>
+      <!-- Menu Berita (hanya User) -->
+      <li class="nav-item">
+        <a href="<?= base_url('berita'); ?>" class="nav-link">
+          <i class="nav-icon fas fa-newspaper"></i>
+          <p>Berita</p>
+        </a>
+      </li>
+    <?php endif; ?>
+
+    <?php if ($this->session->userdata('role') === 'admin') : ?>
+      <!-- Menu Kategori (hanya Admin) -->
+      <li class="nav-item">
+        <a href="<?= base_url('kategori'); ?>" class="nav-link">
+          <i class="nav-icon fas fa-list-alt"></i>
+          <p>Kategori</p>
+        </a>
+      </li>
+
+      <!-- Menu Matakuliah (hanya Admin) -->
+      <li class="nav-item">
+        <a href="<?= base_url('matakuliah'); ?>" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>Matakuliah</p>
+        </a>
+      </li>
+    <?php endif; ?>
+      <!-- Logout -->
+  <li class="nav-item">
+    <a href="<?= site_url('auth/logout'); ?>" class="nav-link">
+      <i class="nav-icon fas fa-sign-out-alt"></i>
+      <p>Keluar</p>
+    </a>
+  </li>
+
+  </ul>
+  <!-- Logout -->
+
+</nav>
+<!-- /.sidebar-menu -->
+
+<!-- /.sidebar-menu -->
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
